@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+    @font-face {
+      font-family: "kiffo-regular";
+      src: url("/fonts/Kiffo-BT-Regular.woff") format("woff");
+      font-weight: normal;
+    }
+    @font-face {
+      font-family: "kiffo-bold";
+      src: url("/fonts/Kiffo-BT-Bold.woff") format("woff");
+    }
+    @font-face {
+      font-family: "kiffo-extra-light";
+      src: url("/fonts/Kiffo-BT-ExtraLight.woff") format("woff");
+    }
+    @font-face {
+        font-family: "kiffo-extra-medium";
+        src: url("/fonts/Kiffo-BT-Medium.woff") format("woff");
+      }
+    @font-face {
+      font-family: 'bacteria';
+      src:local('bacteria'), url("fonts/BacteriaBT.woff2") format("woff2");
+    }
+
+    body {
+        font-family: 'kiffo-regular', sans-serif;
+        background-color: #000;
+        color:#fff;
+        background: url("./assets/img/bg-pattern.png")  repeat #000;
+
+    }
+    .logo svg{
+      
+        width: 100%;
+      
+    }
+    .bg-squares{
+      background: url("./assets/img/bg-pattern.png")  repeat;
+    }
+
+
+    .bg-hover-green:hover {
+      background: url("./assets/img/hover-green.svg")  no-repeat center center;
+      background-size:contain;
+
+    }
+    .bg-hover-orange:hover {
+
+      background: url("./assets/img/hover-orange.svg")  no-repeat center center;
+      background-size:contain;
+
+    }
+    .bg-hover-pink:hover {
+
+      background: url("./assets/img/hover-pink.svg")  no-repeat center center;
+      background-size:contain;
+
+    }
+    .bg-big-carrito:hover {
+      background: url("./assets/img/carrito-total.png")  no-repeat center center;
+    }
+    .modal-style {
+      border: 1px solid #FFF;
+      background: #000;
+      box-shadow: 5px 5px 0px 0px #FFF;
+    }
+  }

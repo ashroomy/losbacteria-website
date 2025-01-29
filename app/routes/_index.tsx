@@ -1,0 +1,72 @@
+import type { MetaFunction } from "@remix-run/node";
+import { Link, useLoaderData } from "@remix-run/react";
+import { SanityDocument } from "@sanity/client";
+import  {Layout}  from '../components/Layout';
+import { client } from "~/sanity/client";
+import imageUrlBuilder from "@sanity/image-url";
+import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { motion } from "motion/react";
+import { Outlet } from '@remix-run/react';
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Los bacteria" },
+    { name: "description", content: "Bacteria es un colectivo creativo que utiliza el arte, diseño, mercadeo y publicidad para crear y potenciar marcas que generen impacto cultural y comercial" },
+  ];
+};
+
+
+const POSTS_QUERY = `*[
+  _type == "product"
+  && defined(slug.current)
+]|order(publicado asc)[0...12]{_id, descripcion, imagen, precio,  titulo, slug, publicado, thumbnail }`;
+
+export async function loader() {
+  return { products: await client.fetch<SanityDocument[]>(POSTS_QUERY) };
+}
+const builder = imageUrlBuilder(client)
+function urlFor(source: SanityImageSource) {
+  return builder.image(source)
+}
+export default function IndexPage() {
+  const { products } = useLoaderData<typeof loader>();
+  const cssHovers = ['bg-hover-green', 'bg-hover-orange', 'bg-hover-pink']
+  return (
+      <Layout>
+      <main className="container mx-auto  pb-[32px]">
+      <ul className="grid xs:grid-cols-2 md:grid-cols-4  max-w-3xl m-auto md:px-[0] xs:gap-[50px] xs:px-[30px]">
+        {products.map((product, index) => {
+          const cssStyle = cssHovers[index % cssHovers.length]
+          return(
+          <li className={`flex justify-center  w-full ${cssStyle}`} key={product._id} >
+           <div className="xs:block md:hidden ">
+           <Link className="pointer min-h-[250px]"  to={`/${product.slug.current}`}>
+            {product.thumbnail &&   <motion.img
+                  whileHover={{ scale: 1.1, rotate:'10deg' }}
+                  whileTap={{ scale: 1.1, rotate:'10deg' }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+             src={urlFor(product.thumbnail).height(150).quality(100).url().toString()}/> }
+            </Link>
+           </div>
+           <div className="md:block xs:hidden">
+           <Link className="pointer"  to={`/${product.slug.current}`}>
+            {product.thumbnail &&   <motion.img
+                  className=""
+                  whileHover={{ scale: 1.2, rotate:'10deg' }}
+                  whileTap={{ scale: 1.2, rotate:'10deg' }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+             src={urlFor(product.thumbnail).height(120).fit('scale').quality(100).url().toString()}/> }
+            </Link>
+           </div>
+           
+          </li>
+        )})}
+      </ul>
+      <Outlet />
+
+    </main>
+      </Layout>
+
+  );
+}
+
