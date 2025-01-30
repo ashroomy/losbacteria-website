@@ -42,7 +42,6 @@ export default function PostPage() {
 
   useEffect(() => {
 
-    console.log('status', isModalOpen)
   });
 
   // const { addToCart } = useCart();
@@ -82,7 +81,7 @@ export default function PostPage() {
             <div className="prose uppercase font-kiffoR  text-[28px] text-white break-words mb-[14px]">
               {Array.isArray(post.descripcion) && <PortableText value={post.descripcion} />}
             </div>
-            <button className="font-kiffoB text-primary text-[30px] underline"
+            <button className="font-kiffoB text-primary hover:text-red text-[30px] underline"
             onClick={handleOpenModal}>
               LO QUIERO
             </button>
