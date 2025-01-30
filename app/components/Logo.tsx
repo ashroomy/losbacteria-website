@@ -13,7 +13,7 @@ useMotionValueEvent(scrollY, "change", (latest: any) => {
 })
 
 	return (
-		<h1 className='min-w-[255px]'>
+		<h1 className='min-w-[255px] logo-header'>
 			<AnimatePresence initial={false} >
 			<Link to='/' className='block z-index-[9999] '>
 				{!active ? 

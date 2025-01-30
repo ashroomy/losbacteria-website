@@ -79,7 +79,7 @@ export default function PostPage() {
           </div>
           <div > 
           <h1 className="mt-[50px] text-[40px] m-r-[15px] font-kiffoB mb-3 break-words">{titulo.toUpperCase()}</h1>
-            <div className="prose uppercase font-kiffoR  text-[28px] text-white break-words">
+            <div className="prose uppercase font-kiffoR  text-[28px] text-white break-words mb-[14px]">
               {Array.isArray(post.descripcion) && <PortableText value={post.descripcion} />}
             </div>
             <button className="font-kiffoB text-primary text-[30px] underline"

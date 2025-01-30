@@ -7,7 +7,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { motion } from "motion/react";
 import { Outlet } from '@remix-run/react';
-
+import {cssHovers} from '../utils'
 export const meta: MetaFunction = () => {
   return [
     { title: "Los bacteria" },
@@ -30,15 +30,14 @@ function urlFor(source: SanityImageSource) {
 }
 export default function IndexPage() {
   const { products } = useLoaderData<typeof loader>();
-  const cssHovers = ['bg-hover-green', 'bg-hover-orange', 'bg-hover-pink']
   return (
       <Layout>
       <main className="container mx-auto  pb-[32px]">
-      <ul className="grid xs:grid-cols-2 md:grid-cols-4  max-w-3xl m-auto md:px-[0] xs:gap-[50px] xs:px-[30px]">
+      <ul className="grid xs:grid-cols-2 md:grid-cols-4  max-w-3xl m-auto md:px-[0] md:gap-[50px] xs:gap-[0px] xs:px-[30px]">
         {products.map((product, index) => {
           const cssStyle = cssHovers[index % cssHovers.length]
           return(
-          <li className={`flex justify-center  w-full ${cssStyle}`} key={product._id} >
+          <li className={`flex justify-center  w-full ${cssStyle} md:pb-[0] xs:pb-[50px]`} key={product._id} >
            <div className="xs:block md:hidden ">
            <Link className="pointer min-h-[250px]"  to={`/${product.slug.current}`}>
             {product.thumbnail &&   <motion.img

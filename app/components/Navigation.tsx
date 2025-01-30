@@ -10,14 +10,16 @@ const Navigation: React.FC<{back:boolean}> = () => {
   const handleCloseModal = () => setIsModalOpen(false);
   return (
     <nav className="w-full flex justify-center px-3 py-4 fixed xs:px-1 ">
-      <div className="flex  justify-between container  max-w-3xl m-auto items-center	">
+      <div className="flex  md:justify-between xs:justify-between container  max-w-3xl m-auto items-center	">
       <Logo  />
 
       <Link
         to={'..'}
+        className="contact-cta"
         onClick={handleOpenModal}
       >
-        <h3 className="uppercase pr-[37px]">Contagiate</h3>
+
+        <h3 className="uppercase">Contagiate</h3>
       </Link>
       </div>  
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
