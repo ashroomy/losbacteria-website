@@ -8,7 +8,7 @@ export function Layout({ children, back=false }: { children: React.ReactNode, ba
 	return <div className="relative min-h-screen">
 		<Navigation back={back} />
 		
-		<div className="z-1 md:pt-[160px] xs:pt-[153px]">
+		<div className=" md:pt-[160px] xs:pt-[153px]">
 			{children}
 		</div>
 		<Footer/>

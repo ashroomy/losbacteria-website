@@ -57,7 +57,7 @@ export default function PostPage() {
       <main className="container mx-auto min-h-screen max-w-3xl">
         <div className="xs:block md:hidden my-[24px] mx-[45px]">
           <div className="relative flex justify-center">
-            <div className="absolute bottom-[8%] left-[0%]">
+            <div className="absolute bottom-[8%] left-[0%] z-20">
               <Precio isMobile={false} precio={post.precio} />
             </div>
             <div>
