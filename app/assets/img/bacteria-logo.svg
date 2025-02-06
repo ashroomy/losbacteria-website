@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 225.93 73.21">
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 225.93 73.21" preserveAspectRatio="xMinYMin meet">
   <!-- Generator: Adobe Illustrator 29.0.0, SVG Export Plug-In . SVG Version: 2.1.0 Build 186)  -->
   <defs>
     <style>
       .st0 {
+        -webkit-filter:  url(#drop-shadow-48);
         filter: url(#drop-shadow-48);
       }
 
       .st1 {
+        -webkit-fill: #fff;
         fill: #fff;
       }
     </style>

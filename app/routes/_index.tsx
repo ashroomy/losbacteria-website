@@ -41,20 +41,21 @@ export default function IndexPage() {
            <div className="xs:block md:hidden ">
            <Link className="pointer min-h-[250px]"  to={`/${product.slug.current}`}>
             {product.thumbnail &&   <motion.img
+                  className="h-[150px]"
                   whileHover={{ scale: 1.1, rotate:'10deg' }}
                   whileTap={{ scale: 1.1, rotate:'10deg' }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
-             src={urlFor(product.thumbnail).height(150).quality(100).url().toString()}/> }
+             src={urlFor(product.thumbnail).fit('min').url().toString()}/> }
             </Link>
            </div>
            <div className="md:block xs:hidden">
-           <Link className="pointer"  to={`/${product.slug.current}`}>
+           <Link className="pointer "   to={`/${product.slug.current}`}>
             {product.thumbnail &&   <motion.img
-                  className=""
+                  className="h-[120px]"
                   whileHover={{ scale: 1.2, rotate:'10deg' }}
                   whileTap={{ scale: 1.2, rotate:'10deg' }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
-             src={urlFor(product.thumbnail).height(120).fit('scale').quality(100).url().toString()}/> }
+             src={urlFor(product.thumbnail).fit('min').url().toString()}/> }
             </Link>
            </div>
            

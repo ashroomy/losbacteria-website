@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "@remix-run/react";
-import logo from '../assets/img/bacteria-logo.svg'
-import logoHover from '../assets/img/bacteria-logo-hover.svg'	
+import Bacteria from '../assets/img/bacteria-logo-full.svg'
+import BacteriaHover from '../assets/img/bacteria-logo-hover.svg'	
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react';
 
 const Logo: React.FC = () => {
@@ -17,9 +17,11 @@ useMotionValueEvent(scrollY, "change", (latest: any) => {
 			<AnimatePresence initial={false} >
 			<Link to='/' className='block z-index-[9999] '>
 				{!active ? 
-				<motion.img  key="logo" src={logo} alt="Logo bacteria" initial={{  opacity:0 }} animate={{  opacity:1 }} exit={{ opacity: 0 }}   transition={{ duration: 0.3, ease: ["easeIn"] }} />
+
+				<motion.img  key="logo" src={Bacteria} alt="Logo bacteria" initial={{  opacity:0 }} animate={{  opacity:1 }} exit={{ opacity: 0 }}   transition={{ duration: 0.3, ease: ["easeIn"] }} />
  				: 
-				<motion.img key="logo-hover" src={logoHover} alt="Logo bacteria" initial={{opacity:0}} animate={{opacity:1 } }   transition={{  duration: 0.15, ease: ["easeOut"] }} />
+
+				 <motion.img key="logo-hover" src={BacteriaHover} alt="Logo bacteria" initial={{opacity:0}} animate={{opacity:1 } }   transition={{  duration: 0.15, ease: ["easeOut"] }} />
 				}
 			</Link>	
 			</AnimatePresence>

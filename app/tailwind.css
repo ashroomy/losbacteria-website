@@ -79,4 +79,7 @@
     .logo-header:hover{
       background: url("./assets/img/bacteria-logo-hover.svg")  no-repeat center center;
     }
+    .logo-header svg {
+      width: 100%;
+    }
   }

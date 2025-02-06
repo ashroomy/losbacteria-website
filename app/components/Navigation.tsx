@@ -14,7 +14,7 @@ const Navigation: React.FC<{back:boolean}> = () => {
       <Logo  />
 
       <Link
-        to={'..'}
+      to={"#"}
         className="contact-cta"
         onClick={handleOpenModal}
       >
