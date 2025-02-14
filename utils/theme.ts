@@ -4,6 +4,7 @@ export const extendedTheme = {
       kiffoR: ["kiffo-regular", "sans-serif"],
       kiffoB: ["kiffo-bold", "sans-serif"],
       kiffoM: ["kiffo-extra-medium", "sans-serif"],
+      kiffoL: ["kiffo-extra-light", "sans-serif"],
       bacteria: ["bacteria"],
     },
     colors: {

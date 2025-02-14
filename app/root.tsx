@@ -34,6 +34,14 @@ export const links: LinksFunction = () => [
     type: "font/woff",
     crossOrigin: "anonymous",
   },
+
+  {
+    rel:"preload",
+    as:"font",
+    href:"fonts/Kiffo-BT-ExtraLight.woff", 
+    type: "font/woff",
+    crossOrigin: "anonymous",
+  }
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {

@@ -18,10 +18,10 @@ useMotionValueEvent(scrollY, "change", (latest: any) => {
 			<Link to='/' className='block z-10 '>
 				{!active ? 
 
-				<motion.img  key="logo" src={Bacteria} alt="Logo bacteria" initial={{  opacity:0 }} animate={{  opacity:1 }} exit={{ opacity: 0 }}   transition={{ duration: 0.3, ease: ["easeIn"] }} />
+				<motion.img  key="logo" src={Bacteria} alt="Logo bacteria" initial={{  opacity:0, zIndex:999 }} animate={{  opacity:1 }} exit={{ opacity: 0 }}   transition={{ duration: 0.3, ease: ["easeIn"] }} />
  				: 
 
-				 <motion.img key="logo-hover" src={BacteriaHover} alt="Logo bacteria" initial={{opacity:0}} animate={{opacity:1 } }   transition={{  duration: 0.15, ease: ["easeOut"] }} />
+				 <motion.img key="logo-hover" src={BacteriaHover} alt="Logo bacteria" initial={{opacity:0, zIndex:999}} animate={{opacity:1 } }   transition={{  duration: 0.15, ease: ["easeOut"] }} />
 				}
 			</Link>	
 			</AnimatePresence>

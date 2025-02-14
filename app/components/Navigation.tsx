@@ -19,7 +19,7 @@ const Navigation: React.FC<{back:boolean}> = () => {
         onClick={handleOpenModal}
       >
 
-        <h3 className="uppercase">Contagiate</h3>
+        <h3 className="uppercase hover:text-red">Contagiate</h3>
       </Link>
       </div>  
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>

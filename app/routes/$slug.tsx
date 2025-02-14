@@ -8,8 +8,9 @@ import { client } from "~/sanity/client";
 import { Layout } from "~/components/Layout";
 import Precio from "~/components/Precio";
 import { useEffect, useState } from "react";
-import Modal from "~/components/Modal";
+import { motion } from "motion/react";
 import { cssHovers } from "~/utils";
+import ModalProduct from "~/components/ModalProduct";
 
 const POST_QUERY = `*[_type == "product" && slug.current == $slug][0]{_id, descripcion, imagen, precio, titulo}`;
 
@@ -39,44 +40,38 @@ export default function PostPage() {
 
   useEffect(() => {});
 
-  // const { addToCart } = useCart();
 
-  // const handleAddToCart = () => {
-  //   addToCart({
-  //     id: post._id,
-  //     title: post.titulo,
-  //     price: post.precio,
-  //     quantity: 1,
-  //     imgSrc: urlFor(post.imagen).url().toString()
-  //   });
-  // };
+
   const titulo: string = post.titulo;
 
   return (
     <Layout>
       <main className="container mx-auto min-h-screen max-w-3xl">
         <div className="xs:block md:hidden my-[24px] mx-[45px]">
-          <div className="relative flex justify-center">
-            <div className="absolute bottom-[8%] left-[0%] z-20">
-              <Precio isMobile={false} precio={post.precio} />
+        <div className="flex justify-center">
+          <div className="relative w-fit h-fit">
+   
+              
+            <div className="absolute bottom-[2%] left-[-10px] z-[5]">
+              <Precio precio={post.precio} />
             </div>
-            <div>
               {post && (
-                <div className="h-[280px]">
+                <div>
                   <img
                     src={urlFor(post?.imagen)?.fit("min").url().toString()}
                     alt={post.titulo}
-                    className=""
+                    className="h-[280px] z-[2]"
                   />
                 </div>
               )}
-            </div>
           </div>
+          </div>
+
           <div>
             <h1 className="mt-[50px] text-[40px] m-r-[15px] font-kiffoB mb-3 break-words">
               {titulo.toUpperCase()}
             </h1>
-            <div className="prose uppercase font-kiffoR  text-[28px] text-white break-words mb-[14px]">
+            <div className="prose uppercase font-kiffoL  text-[28px] text-white break-words mb-[14px]">
               {Array.isArray(post.descripcion) && (
                 <PortableText value={post.descripcion} />
               )}
@@ -92,17 +87,17 @@ export default function PostPage() {
         <div className=" xs:hidden md:flex  my-[16px]">
           <div className="w-1/2">
             <div className="pr-[40px]">
-              <Precio isMobile={false} precio={post.precio} />
+              <Precio  precio={post.precio} />
               <h1 className="mt-[20px] text-[34px] m-r-[15px] font-kiffoB mb-[15px] ">
                 {titulo.toUpperCase()}
               </h1>
-              <div className="prose uppercase font-kiffoR font-extralight	 text-[25px] text-white">
+              <div className="prose uppercase font-kiffoL text-[25px] text-white leading-none">
                 {Array.isArray(post.descripcion) && (
                   <PortableText value={post.descripcion} />
                 )}
               </div>
               <button
-                className="font-kiffoB text-primary text-[30px] underline"
+                className="font-kiffoB text-primary  pt-[15px] text-[30px] underline"
                 onClick={handleOpenModal}
               >
                 LO QUIERO
@@ -111,8 +106,9 @@ export default function PostPage() {
           </div>
           <div className="w-1/2 flex justify-end">
             {post && (
-              <div className="h-[300px]">
+              <div >
                 <img
+                className="h-[300px] z-1"
                   src={urlFor(post?.imagen)?.fit("max").url().toString()}
                   alt={post.titulo}
                 />
@@ -135,8 +131,11 @@ export default function PostPage() {
                     to={`/${product.slug.current}`}
                   >
                     {product.thumbnail && (
-                      <img
+                      <motion.img
                       className="h-[120px]"
+                      whileFocus={{ scale: 1.1, rotate:'10deg' }}
+                      whileTap={{ scale: 1.1, rotate:'10deg' }}
+                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
                         src={urlFor(product.thumbnail)
                           .fit("min")
 
@@ -150,9 +149,10 @@ export default function PostPage() {
             })}
           </ul>
         )}
+        <ModalProduct isOpen={isModalOpen} onClose={handleCloseModal}></ModalProduct>
 
-        <Modal isOpen={isModalOpen} onClose={handleCloseModal}></Modal>
       </main>
+
     </Layout>
   );
 }

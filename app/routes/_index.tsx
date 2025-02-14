@@ -37,12 +37,12 @@ export default function IndexPage() {
         {products.map((product, index) => {
           const cssStyle = cssHovers[index % cssHovers.length]
           return(
-          <li className={`flex justify-center  w-full ${cssStyle} md:pb-[0] xs:pb-[50px]`} key={product._id} >
+          <li className={`flex justify-center  w-full ${cssStyle} md:mb-[0] xs:mb-[50px]`} key={product._id} >
            <div className="xs:block md:hidden ">
            <Link className="pointer min-h-[250px]"  to={`/${product.slug.current}`}>
             {product.thumbnail &&   <motion.img
                   className="h-[150px]"
-                  whileHover={{ scale: 1.1, rotate:'10deg' }}
+                  whileFocus={{ scale: 1.1, rotate:'10deg' }}
                   whileTap={{ scale: 1.1, rotate:'10deg' }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
              src={urlFor(product.thumbnail).fit('min').url().toString()}/> }
@@ -52,7 +52,7 @@ export default function IndexPage() {
            <Link className="pointer "   to={`/${product.slug.current}`}>
             {product.thumbnail &&   <motion.img
                   className="h-[120px]"
-                  whileHover={{ scale: 1.2, rotate:'10deg' }}
+                  whileFocus={{ scale: 1.2, rotate:'10deg' }}
                   whileTap={{ scale: 1.2, rotate:'10deg' }}
                   transition={{ type: "spring", stiffness: 400, damping: 17 }}
              src={urlFor(product.thumbnail).fit('min').url().toString()}/> }
