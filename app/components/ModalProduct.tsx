@@ -10,7 +10,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
-      <div className="px-[12px] py-[17px] relative modal-style border border-white md:w-[550px]   xs:w-[400px] z-90">
+      <div className="px-[12px] py-[17px] relative modal-style border border-white md:w-[440px]   xs:w-[400px] z-90">
         <h2 className="text-primary uppercase text-[35px] pb-[10px] font-kiffoB">
           ¡contagiate completamente gratis!
         </h2>
