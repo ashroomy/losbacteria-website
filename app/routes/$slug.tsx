@@ -133,7 +133,7 @@ export default function PostPage() {
                     {product.thumbnail && (
                       <motion.img
                       className="h-[120px]"
-                      whileFocus={{ scale: 1.1, rotate:'10deg' }}
+                      whileHover={{ scale: 1.1, rotate:'10deg' }}
                       whileTap={{ scale: 1.1, rotate:'10deg' }}
                       transition={{ type: "spring", stiffness: 400, damping: 17 }}
                         src={urlFor(product.thumbnail)
