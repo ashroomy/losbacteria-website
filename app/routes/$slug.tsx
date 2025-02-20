@@ -120,31 +120,35 @@ export default function PostPage() {
           </div>
         </div>
         {products && (
-          <ul className="grid xs:grid-cols-2 md:grid-cols-4 gap-[68px] max-w-3xl m-auto md:pt-[120px] xs:pt-[106px] xs:mx-[50px] md:mx-[0px]">
+          <ul className="grid xs:grid-cols-2 md:grid-cols-4 max-w-3xl m-auto md:pt-[120px] xs:pt-[106px] xs:mx-[50px] md:mx-[0px]">
             {products.map((product, index) => {
               const cssStyle = cssHovers[index % cssHovers.length]
               
               return (
-                <li className= {`flex justify-center  ${cssStyle} mb-5`} key={product._id}>
-                  <Link
-                    className="pointer "
-                    to={`/${product.slug.current}`}
-                  >
-                    {product.thumbnail && (
-                      <motion.img
-                      className="h-[120px]"
-                      whileHover={{ scale: 1.1, rotate:'10deg' }}
-                      whileTap={{ scale: 1.1, rotate:'10deg' }}
-                      transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                        src={urlFor(product.thumbnail)
-                          .fit("min")
-
-                          .url()
-                          .toString()}
-                      />
-                    )}
-                  </Link>
-                </li>
+          <li className={`flex justify-center  w-full ${cssStyle} md:mb-[0] xs:mb-[50px]`} key={product._id} >
+           
+           <div className="xs:block md:hidden ">
+           <Link className="pointer min-h-[250px]"  to={`/${product.slug.current}`}>
+            {product.thumbnail &&   <motion.img
+                  className="h-[150px]"
+                  whileHover={{ scale: 1.1, rotate:'10deg' }}
+                  whileTap={{ scale: 1.1, rotate:'10deg' }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+             src={urlFor(product.thumbnail).fit('min').url().toString()}/> }
+            </Link>
+           </div>
+           <div className="md:block xs:hidden">
+           <Link className="pointer "   to={`/${product.slug.current}`}>
+            {product.thumbnail &&   <motion.img
+                  className="h-[120px]"
+                  whileHover={{ scale: 1.2, rotate:'10deg' }}
+                  whileTap={{ scale: 1.2, rotate:'10deg' }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+             src={urlFor(product.thumbnail).fit('min').url().toString()}/> }
+            </Link>
+           </div>
+           
+          </li>
               );
             })}
           </ul>
