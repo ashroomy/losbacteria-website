@@ -47,12 +47,12 @@ export default function PostPage() {
   return (
     <Layout>
       <main className="container mx-auto min-h-screen max-w-3xl">
-        <div className="xs:block md:hidden my-[24px] mx-[45px]">
+        <div className="xs:block md:hidden my-[24px] mx-[74px]">
         <div className="flex justify-center">
           <div className="relative w-fit h-fit">
    
               
-            <div className="absolute bottom-[2%] left-[-10px] z-[5]">
+            <div className="absolute bottom-[5%] left-[-24%] z-10">
               <Precio precio={post.precio} />
             </div>
               {post && (
@@ -60,7 +60,7 @@ export default function PostPage() {
                   <img
                     src={urlFor(post?.imagen)?.fit("min").url().toString()}
                     alt={post.titulo}
-                    className="h-[280px] z-[2]"
+                    className="h-[280px] z-1"
                   />
                 </div>
               )}
@@ -68,10 +68,10 @@ export default function PostPage() {
           </div>
 
           <div>
-            <h1 className="mt-[50px] text-[40px] m-r-[15px] font-kiffoB mb-3 break-words">
+            <h1 className="mt-[50px] text-[34px] m-r-[15px] font-kiffoB mb-3 break-words">
               {titulo.toUpperCase()}
             </h1>
-            <div className="prose uppercase font-kiffoL  text-[28px] text-white break-words mb-[14px]">
+            <div className="prose uppercase font-kiffoL  text-[25px] text-white break-words mb-[14px]">
               {Array.isArray(post.descripcion) && (
                 <PortableText value={post.descripcion} />
               )}
@@ -120,7 +120,7 @@ export default function PostPage() {
           </div>
         </div>
         {products && (
-          <ul className="grid xs:grid-cols-2 md:grid-cols-4 gap-[68px] max-w-3xl m-auto md:pt-[120px] xs:pt-[124px] xs:mx-[50px] md:mx-[0px]">
+          <ul className="grid xs:grid-cols-2 md:grid-cols-4 gap-[68px] max-w-3xl m-auto md:pt-[120px] xs:pt-[106px] xs:mx-[50px] md:mx-[0px]">
             {products.map((product, index) => {
               const cssStyle = cssHovers[index % cssHovers.length]
               

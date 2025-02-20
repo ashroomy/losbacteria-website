@@ -37,7 +37,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             para entender mejor qué necesitás y poder ayudarte.{" "}
           </p>
 
-          <div className="flex justify-between text-[15px]  font-kiffoB">
+          <div className="flex justify-between text-[15px]  hover:text-primary font-kiffoB">
             <button onClick={onClose} className="uppercase text-white">
               Cerrar
             </button>

@@ -38,6 +38,7 @@ export default function IndexPage() {
           const cssStyle = cssHovers[index % cssHovers.length]
           return(
           <li className={`flex justify-center  w-full ${cssStyle} md:mb-[0] xs:mb-[50px]`} key={product._id} >
+           
            <div className="xs:block md:hidden ">
            <Link className="pointer min-h-[250px]"  to={`/${product.slug.current}`}>
             {product.thumbnail &&   <motion.img
