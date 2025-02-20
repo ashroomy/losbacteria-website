@@ -30,7 +30,7 @@
         font-family: 'kiffo-regular', sans-serif;
         background-color: #000;
         color:#fff;
-        background: url("./assets/img/bg-pattern.png")  repeat #000;
+        /* background: url("./assets/img/bg-pattern.png")  repeat #000; */
 
     }
     .logo svg{
@@ -41,7 +41,10 @@
     .bg-squares{
       background: url("./assets/img/bg-pattern.png")  repeat;
     }
+    .bg-grid{
+      background: url("./assets/img/bg-pattern.png")  repeat #000;
 
+    }
 
     .bg-hover-green:hover {
       background: url("./assets/img/hover-green.svg")  no-repeat center center;

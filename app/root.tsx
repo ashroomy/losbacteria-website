@@ -7,9 +7,9 @@ import {
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
 
+import { useLocation } from "@remix-run/react";
 
 import styles from "./tailwind.css?url";
-import { useScroll } from "motion/react";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
@@ -45,7 +45,8 @@ export const links: LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
-
+  const location = useLocation();
+  const cssBG = location.pathname === "/" ? "bg-grid":""
   return (
     <html lang="en">
       <head>
@@ -54,7 +55,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className={`${cssBG}`}>
         {children}
         <ScrollRestoration />
         <Scripts />

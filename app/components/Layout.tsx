@@ -5,7 +5,7 @@ import Modal from "./Modal";
 import { useState } from "react";
 
 
-export function Layout({ children, back=false }: { children: React.ReactNode, back?: boolean }) {
+export function Layout({ children }: { children: React.ReactNode, back?: boolean }) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const handleOpenModal = () => setIsModalOpen(true);
