@@ -33,11 +33,11 @@ export default function IndexPage() {
   return (
       <Layout>
       <main className="container mx-auto  pb-[32px]">
-      <ul className="grid xs:grid-cols-2 md:grid-cols-4  max-w-3xl m-auto md:px-[0] md:gap-[50px] xs:gap-[0px] xs:px-[30px]">
+      <ul className="grid xs:grid-cols-2 md:grid-cols-4  max-w-3xl m-auto md:px-[0] md:gap-[50px] xs:gap-[50px] xs:px-[30px]">
         {products.map((product, index) => {
           const cssStyle = cssHovers[index % cssHovers.length]
           return(
-          <li className={`flex justify-center  w-full ${cssStyle} md:mb-[0] xs:mb-[50px]`} key={product._id} >
+          <li className={`flex justify-center  w-full ${cssStyle} `} key={product._id} >
            
            <div className="xs:block md:hidden ">
            <Link className="pointer min-h-[250px]"  to={`/${product.slug.current}`}>
