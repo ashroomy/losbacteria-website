@@ -68,7 +68,7 @@ export default function PostPage() {
           </div>
 
           <div>
-            <h1 className="mt-[50px] text-[34px] m-r-[15px] font-kiffoB mb-3 break-words">
+            <h1 className="mt-[50px] text-[34px] m-r-[15px] font-kiffoB mb-3 break-words leading-[normal]">
               {titulo.toUpperCase()}
             </h1>
             <div className="prose uppercase font-kiffoL  text-[25px] text-white break-words mb-[14px]">
@@ -88,7 +88,7 @@ export default function PostPage() {
           <div className="w-1/2">
             <div className="pr-[40px]">
               <Precio  precio={post.precio} />
-              <h1 className="mt-[20px] text-[34px] m-r-[15px] font-kiffoB mb-[15px] ">
+              <h1 className="mt-[20px] text-[34px] m-r-[15px] font-kiffoB mb-[15px]  leading-[normal]">
                 {titulo.toUpperCase()}
               </h1>
               <div className="prose uppercase font-kiffoL text-[25px] text-white leading-none">
@@ -120,7 +120,7 @@ export default function PostPage() {
           </div>
         </div>
         {products && (
-          <ul className="grid xs:grid-cols-2 md:grid-cols-4 max-w-3xl m-auto md:pt-[120px] xs:pt-[106px] xs:mx-[50px] md:mx-[0px] md:gap-[50px] xs:gap-[50px] xs:px-[30px]">
+          <ul className="grid xs:grid-cols-2 md:grid-cols-4 max-w-3xl m-auto md:pt-[120px] xs:pt-[106px] xs:mx-[50px] md:mx-[0px] md:gap-[50px] xs:gap-[40px] xs:px-[30px]">
             {products.map((product, index) => {
               const cssStyle = cssHovers[index % cssHovers.length]
               
