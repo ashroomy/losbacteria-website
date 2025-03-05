@@ -33,7 +33,7 @@ export default function IndexPage() {
   return (
       <Layout>
       <main className="container mx-auto  pb-[32px]">
-      <ul className="grid xs:grid-cols-2 md:grid-cols-4  max-w-3xl m-auto md:px-[0] md:gap-[50px] xs:gap-[30px] xs:px-[30px]">
+      <ul className="grid xs:grid-cols-2 md:grid-cols-4  max-w-3xl m-auto md:px-[0] md:gap-[50px] xs:gap-[40px] xs:px-[30px]">
         {products.map((product, index) => {
           const cssStyle = cssHovers[index % cssHovers.length]
           return(
