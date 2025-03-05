@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer: React.FC = () => {
     return (
-        <footer className='text-[15px] container   max-w-xl m-auto sm:wax-w-[400px]  '>
+        <footer className='text-[15px] container   max-w-xl m-auto  '>
             <div className='flex sm:flex-col md:flex-row sm:items-center items-center md:justify-center uppercase font-kiffoM text-primary  underline sm:gap-3 md:gap-6  md:mb-[20px] sm:mb-[26px] pt-[71px]'>
                 <a href="https://www.instagram.com/ideascontagiosas/" className='hover:text-red' target="_blank" rel="noopener noreferrer">
                     @ideascontagiosas
