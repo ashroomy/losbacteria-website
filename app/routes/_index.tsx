@@ -40,7 +40,7 @@ export default function IndexPage() {
           <li className={`flex justify-center  w-full ${cssStyle} `} key={product._id} >
            
            <div className="xs:block md:hidden ">
-           <Link className="pointer min-h-[250px]"  to={`/${product.slug.current}`}>
+           <Link className="pointer"  to={`/${product.slug.current}`}>
             {product.thumbnail &&   <motion.img
                   className="h-[150px]"
                   whileHover={{ scale: 1.1, rotate:'10deg' }}

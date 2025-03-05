@@ -52,7 +52,7 @@ export default function PostPage() {
           <div className="relative w-fit h-fit">
    
               
-            <div className="absolute bottom-[5%] left-[-24%] z-10">
+            <div className="absolute bottom-[5%] left-[-22%] z-10">
               <Precio precio={post.precio} />
             </div>
               {post && (
@@ -128,7 +128,7 @@ export default function PostPage() {
           <li className={`flex justify-center  w-full ${cssStyle} md:mb-[0] xs:mb-[50px]`} key={product._id} >
            
            <div className="xs:block md:hidden ">
-           <Link className="pointer min-h-[250px]"  to={`/${product.slug.current}`}>
+           <Link className="pointer"  to={`/${product.slug.current}`}>
             {product.thumbnail &&   <motion.img
                   className="h-[150px]"
                   whileHover={{ scale: 1.1, rotate:'10deg' }}
