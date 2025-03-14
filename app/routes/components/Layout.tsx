@@ -1,4 +1,3 @@
-import { useScroll } from "motion/react";
 import Footer from "./Footer"
 import  Navigation from "./Navigation"
 import Modal from "./Modal";
@@ -8,7 +7,9 @@ import { useState } from "react";
 export function Layout({ children }: { children: React.ReactNode, back?: boolean }) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
-	const handleOpenModal = () => setIsModalOpen(true);
+	const handleOpenModal = () => {
+		return setIsModalOpen(true);
+	}
 	const handleCloseModal = () => setIsModalOpen(false);
 	return <div className="relative min-h-screen">
 		<Navigation onHandleContactClick={handleOpenModal} />

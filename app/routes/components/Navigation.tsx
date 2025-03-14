@@ -14,14 +14,12 @@ const Navigation: React.FC<NavigationProps> = ({onHandleContactClick}) => {
       <div className="flex  md:justify-between xs:justify-between container  max-w-3xl m-auto items-center	">
       <Logo  />
 
-      <Link
-      to={"#"}
+      <button
         className="contact-cta"
-        onClick={onHandleContactClick}
+        onClick={(e) => onHandleContactClick(e)}
       >
-
         <h3 className="uppercase">Contagiate</h3>
-      </Link>
+      </button>
       </div>  
 
     </nav>

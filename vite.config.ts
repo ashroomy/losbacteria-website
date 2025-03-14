@@ -1,6 +1,7 @@
 import { vitePlugin as remix } from "@remix-run/dev";
-import { defineConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
+import { defineConfig } from "vite"
+import { denyImports } from "vite-env-only"
 
 declare module "@remix-run/node" {
   interface Future {
@@ -18,7 +19,16 @@ export default defineConfig({
         v3_singleFetch: true,
         v3_lazyRouteDiscovery: true,
       },
+      ignoredRouteFiles: ["**/*.css, **/*.server.*"],
+
     }),
     tsconfigPaths(),
-  ],
+    denyImports(
+      {client: {
+        // specifiers: ["fs-extra", /^node:/, "@prisma/*"],
+        // files: ["**/.server/*", "**/*.server.*"],
+      },
+      server: {
+      },}
+    ),],
 });

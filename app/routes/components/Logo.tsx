@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "@remix-run/react";
-import Bacteria from '../assets/img/bacteria-logo-full.svg'
-import BacteriaHover from '../assets/img/bacteria-logo-full-hover.svg'	
+import Bacteria from '../../assets/img/bacteria-logo-full.svg'
+import BacteriaHover from '../../assets/img/bacteria-logo-full-hover.svg'	
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'motion/react';
 
 const Logo: React.FC = () => {

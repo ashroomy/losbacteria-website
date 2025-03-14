@@ -1,13 +1,44 @@
-import type { MetaFunction } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import type { ActionFunction, MetaFunction } from "@remix-run/node";
+import { json, Link, useLoaderData } from "@remix-run/react";
 import { SanityDocument } from "@sanity/client";
-import  {Layout}  from '../components/Layout';
+import  {Layout}  from './components/Layout';
 import { client } from "~/sanity/client";
 import imageUrlBuilder from "@sanity/image-url";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { motion } from "motion/react";
 import { Outlet } from '@remix-run/react';
 import {cssHovers} from '../utils'
+import { register } from "./utils/auth.server";
+import { validateEmail } from "./utils/validator.server";
+
+
+export const action: ActionFunction = async ({ request }) => {
+  
+  console.log('ACCION')
+  const form = await request.formData();
+  const email = form.get("email");
+  console.log('email', email)
+  // If not all data was passed, error
+  if (typeof email !== "string") {
+    return Response.json({ error: `El correo que escribiste no es válido. Intentalo de nuevo.` }, { status: 400 });
+  }
+
+
+  // Validate email & password
+
+  const errors = {
+    email: validateEmail(email)
+  };  
+
+  //  If there were any errors, return them
+  if (Object.values(errors).some(Boolean))
+    return Response.json({ errors, fields: { email } }, { status: 400 });
+  // return await serverOnly$(async () => {
+  //   return register({ email })
+  //   });
+  
+  return await register({ email })
+}
 export const meta: MetaFunction = () => {
   return [
     { title: "Los bacteria" },
@@ -28,6 +59,10 @@ const builder = imageUrlBuilder(client)
 function urlFor(source: SanityImageSource) {
   return builder.image(source)
 }
+
+
+
+
 export default function IndexPage() {
   const { products } = useLoaderData<typeof loader>();
   return (

@@ -1,16 +1,18 @@
 import imageUrlBuilder from "@sanity/image-url";
-import { LoaderFunctionArgs } from "@remix-run/node";
+import { ActionFunction, LoaderFunctionArgs } from "@remix-run/node";
 import { Link, Outlet, useLoaderData, useNavigate } from "@remix-run/react";
 import { SanityDocument } from "@sanity/client";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { PortableText } from "@portabletext/react";
 import { client } from "~/sanity/client";
-import { Layout } from "~/components/Layout";
-import Precio from "~/components/Precio";
+import { Layout } from "./components/Layout";
+import Precio from "./components/Precio";
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { cssHovers } from "~/utils";
-import ModalProduct from "~/components/ModalProduct";
+import ModalProduct from "./components/ModalProduct";
+import { register } from "./utils/auth.server";
+import { validateEmail } from "./utils/validator.server";
 
 const POST_QUERY = `*[_type == "product" && slug.current == $slug][0]{_id, descripcion, imagen, precio, titulo}`;
 
@@ -24,6 +26,34 @@ export async function loader({ params }: LoaderFunctionArgs) {
     post: await client.fetch<SanityDocument>(POST_QUERY, params),
     products: await client.fetch<SanityDocument[]>(POSTS_QUERY_PRODUCTOS),
   };
+}
+
+
+export const action: ActionFunction = async ({ request }) => {
+  console.log('ACCION')
+  const form = await request.formData();
+  const email = form.get("email");
+  console.log('email', email)
+  // If not all data was passed, error
+  if (typeof email !== "string") {
+    return Response.json({ error: `El correo que escribiste no es válido. Intentalo de nuevo.` }, { status: 400 });
+  }
+
+
+  // Validate email & password
+
+  const errors = {
+    email: validateEmail(email)
+  };  
+
+  //  If there were any errors, return them
+  if (Object.values(errors).some(Boolean))
+    return Response.json({ errors, fields: { email } }, { status: 400 });
+  // return await serverOnly$(async () => {
+  //   return register({ email })
+  //   });
+  
+  return await register({ email })
 }
 
 const builder = imageUrlBuilder(client);
