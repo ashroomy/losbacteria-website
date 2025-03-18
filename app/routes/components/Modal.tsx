@@ -87,10 +87,10 @@ const Modal: React.FC<ModalProps> = ({  isOpen, onClose }) => {
             value={formData.email}
             onChange={e => handleInputChange(e, 'email')}
             />
-            <div className="text-xs font-semibold text-[18px] tracking-wide text-red w-full ">
+            <div className="text-xs font-semibold uppercase text-[18px] tracking-wide text-red w-full ">
                 {data?.error} 
               </div>
-              <div className="text-xs font-semibold text-[18px] tracking-wide text-primary w-full ">
+              <div className="text-xs font-semibold uppercase text-[18px] tracking-wide text-primary w-full ">
                 {data?.message} 
               </div>
           <div className='flex justify-between text-[15px]  pt-[55px]  font-kiffoB'> 
