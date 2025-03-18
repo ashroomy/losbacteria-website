@@ -14,10 +14,8 @@ import { validateEmail } from "./utils/validator.server";
 
 export const action: ActionFunction = async ({ request }) => {
   
-  console.log('ACCION')
   const form = await request.formData();
   const email = form.get("email");
-  console.log('email', email)
   // If not all data was passed, error
   if (typeof email !== "string") {
     return Response.json({ error: `El correo que escribiste no es válido. Intentalo de nuevo.` }, { status: 400 });
@@ -32,12 +30,9 @@ export const action: ActionFunction = async ({ request }) => {
 
   //  If there were any errors, return them
   if (Object.values(errors).some(Boolean))
-    return Response.json({ errors, fields: { email } }, { status: 400 });
-  // return await serverOnly$(async () => {
-  //   return register({ email })
-  //   });
-  
-  return await register({ email })
+    return { errors, fields: { email } };
+  const registered = await register({ email });
+  return registered;
 }
 export const meta: MetaFunction = () => {
   return [

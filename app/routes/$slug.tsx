@@ -1,5 +1,5 @@
 import imageUrlBuilder from "@sanity/image-url";
-import { ActionFunction, LoaderFunctionArgs } from "@remix-run/node";
+import { ActionFunction, json, LoaderFunctionArgs } from "@remix-run/node";
 import { Link, Outlet, useLoaderData, useNavigate } from "@remix-run/react";
 import { SanityDocument } from "@sanity/client";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
@@ -30,30 +30,24 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 
 export const action: ActionFunction = async ({ request }) => {
-  console.log('ACCION')
   const form = await request.formData();
   const email = form.get("email");
-  console.log('email', email)
   // If not all data was passed, error
   if (typeof email !== "string") {
-    return Response.json({ error: `El correo que escribiste no es válido. Intentalo de nuevo.` }, { status: 400 });
+    return json({ error: `El correo que escribiste no es válido. Intentalo de nuevo.` }, { status: 400 });
   }
-
 
   // Validate email & password
 
   const errors = {
     email: validateEmail(email)
   };  
-
   //  If there were any errors, return them
   if (Object.values(errors).some(Boolean))
     return Response.json({ errors, fields: { email } }, { status: 400 });
-  // return await serverOnly$(async () => {
-  //   return register({ email })
-  //   });
-  
-  return await register({ email })
+
+  const registerUser = await register({ email })
+  return registerUser
 }
 
 const builder = imageUrlBuilder(client);

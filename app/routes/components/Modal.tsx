@@ -1,9 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FormField } from './FormField';
-import { Form, useActionData } from '@remix-run/react';
-import { ActionFunction, json } from '@remix-run/node';
-// import { action } from '~/routes/_index';
-import { serverOnly$ } from "vite-env-only/macros"
+import { Form, useActionData, useFetcher } from '@remix-run/react';
+import {  json } from '@remix-run/node';
 import { action } from '../_index';
 
 interface ModalProps {
@@ -21,15 +19,14 @@ export const validateEmail = (email: string): string | undefined => {
 
 
 const Modal: React.FC<ModalProps> = ({  isOpen, onClose }) => {
-  const data = useActionData<typeof action>();
+  const fetcher = useFetcher({ key: "contact" });
+  const data:any = fetcher.data
+  // you will see the data here after submitting
   const firstLoad = useRef(true)
-  const [errors, setErrors] = useState(data?.errors || {})
-  const [formError, setFormError] = useState(data?.error || '')
   const modalRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
-    email: '',
+    email: data?.email
   })
-  
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, field: string) => {
     setFormData(form => ({ ...form, [field]: event.target.value }))
   }
@@ -40,17 +37,10 @@ const Modal: React.FC<ModalProps> = ({  isOpen, onClose }) => {
       const newState = {
         email: ''
       }
-      setErrors(newState)
-      setFormError('')
       setFormData(newState)
     }
   }, [])
 
-  useEffect(() => {
-    if (!firstLoad.current) {
-      setFormError('')
-    }
-  }, [formData])
 
   useEffect(() => {
     firstLoad.current = false
@@ -80,7 +70,6 @@ const Modal: React.FC<ModalProps> = ({  isOpen, onClose }) => {
     };
   }, [isOpen, onClose]);
   if (!isOpen) return null;
-
   return (
     <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 overflow-hidden">
       <div className="px-[12px] py-[17px] relative modal-style border border-white md:w-[550px]  sm:w-full xs:w-[400px] z-50">
@@ -90,26 +79,29 @@ const Modal: React.FC<ModalProps> = ({  isOpen, onClose }) => {
           <p className="uppercase text-[20px] pr-[15px] ">
           Si estás leyendo esto, oficialmente has sido infectado. Ya no hay vuelta atrás. Lo único que te queda, es seguirnos en <a href='https://www.instagram.com/ideascontagiosas/' className='text-white underline hover:text-red'>Instagram</a>, <a href='' className='text-white underline  hover:text-red'>tiktok</a> o dejarnos tu correo:
           </p>
-          <Form navigate={false} fetcherKey="contact" method="post" className="flex flex-col gap-2 pb-[55px]">
+          <fetcher.Form method="post" action='' className="flex flex-col gap-2">
           <FormField
             type='email'
             htmlFor='email'
             label='Tu correo aquí'
             value={formData.email}
             onChange={e => handleInputChange(e, 'email')}
-            error={errors?.email}
             />
-            <div className="text-xs font-semibold text-center tracking-wide text-red-500 w-full ">
-                {formError}
+            <div className="text-xs font-semibold text-[18px] tracking-wide text-red w-full ">
+                {data?.error} 
               </div>
-          </Form>
-          <div className='flex justify-between text-[15px]  font-kiffoB'> 
+              <div className="text-xs font-semibold text-[18px] tracking-wide text-primary w-full ">
+                {data?.message} 
+              </div>
+          <div className='flex justify-between text-[15px]  pt-[55px]  font-kiffoB'> 
           <button type="submit"  className="text-primary hover:text-red w-fit	 leading-6	underline uppercase cursor-pointer	" >contagiarme</button>
           
-          <button onClick={onClose} className="underline uppercase text-white hover:text-primary ">
+          <span onClick={onClose} className="underline uppercase text-white hover:text-primary ">
           Cerrar
-        </button>
+        </span>
           </div>
+          </fetcher.Form>
+
 
         </div>
 

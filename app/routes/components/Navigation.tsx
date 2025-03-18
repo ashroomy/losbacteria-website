@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Logo from "./Logo";
 import { Link } from "@remix-run/react";
-import Modal from "./Modal";
 
 interface NavigationProps {
   onHandleContactClick: (e: React.MouseEvent) => void;    
