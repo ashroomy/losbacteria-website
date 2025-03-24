@@ -45,7 +45,7 @@ export const meta: MetaFunction = () => {
 const POSTS_QUERY = `*[
   _type == "product"
   && defined(slug.current)
-]|order(publicado asc)[0...12]{_id, descripcion, imagen, precio,  titulo, slug, publicado, thumbnail }`;
+]|order(publicado asc){_id, descripcion, imagen, precio,  titulo, slug, publicado, thumbnail }`;
 
 export async function loader() {
   return { products: await client.fetch<SanityDocument[]>(POSTS_QUERY) };

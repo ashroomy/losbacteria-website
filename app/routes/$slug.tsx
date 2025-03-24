@@ -19,7 +19,7 @@ const POST_QUERY = `*[_type == "product" && slug.current == $slug][0]{_id, descr
 const POSTS_QUERY_PRODUCTOS = `*[
   _type == "product"
   && defined(slug.current)
-]|order(publicado asc)[0...12]{_id, descripcion, imagen, precio,  titulo, slug, publicado, thumbnail }`;
+]|order(publicado asc){_id, descripcion, imagen, precio,  titulo, slug, publicado, thumbnail }`;
 
 export async function loader({ params }: LoaderFunctionArgs) {
   return {
