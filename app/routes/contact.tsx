@@ -8,7 +8,7 @@ const ContactModal: React.FC = () => {
         <a href="mailto:example@example.com" className="text-blue-500 underline">
           Email Us
         </a>
-        <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" className="text-green-500 underline">
+        <a href="https://wa.me/50671236326" target="_blank" rel="noopener noreferrer" className="text-green-500 underline">
           WhatsApp Us
         </a>
       </div>

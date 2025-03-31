@@ -30,7 +30,8 @@ interface FormFieldProps {
           type={type}
           id={htmlFor}
           name={htmlFor}
-          className="text-[20px] w-[220px] uppercase opacity-25 bg-dark   color-[rgba(200, 255, 0, 0.25)] p-[5px] "
+          placeholder={label}
+          className="text-[20px] w-[220px] uppercase  bg-dark  text-white color-[rgba(200, 255, 0, 0.25)] p-[5px] "
           value={value}
         />
       <div className="font-[20px] tracking-wide text-red w-full">

@@ -51,7 +51,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
             </a>
             o escríbenos por{" "}
             <a
-              href="https://wa.me/1234567890"
+              href="https://wa.me/50671236326"
               target="_blank"
               rel="noopener noreferrer"
               className="font-bold underline hover:text-red" 
