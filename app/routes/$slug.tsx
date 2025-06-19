@@ -28,27 +28,29 @@ export async function loader({ params }: LoaderFunctionArgs) {
   };
 }
 
-
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData();
   const email = form.get("email");
   // If not all data was passed, error
   if (typeof email !== "string") {
-    return json({ error: `El correo que escribiste no es válido. Intentalo de nuevo.` }, { status: 400 });
+    return json(
+      { error: `El correo que escribiste no es válido. Intentalo de nuevo.` },
+      { status: 400 }
+    );
   }
 
   // Validate email & password
 
   const errors = {
-    email: validateEmail(email)
-  };  
+    email: validateEmail(email),
+  };
   //  If there were any errors, return them
   if (Object.values(errors).some(Boolean))
     return Response.json({ errors, fields: { email } }, { status: 400 });
 
-  const registerUser = await register({ email })
-  return registerUser
-}
+  const registerUser = await register({ email });
+  return registerUser;
+};
 
 const builder = imageUrlBuilder(client);
 function urlFor(source: SanityImageSource) {
@@ -64,31 +66,27 @@ export default function PostPage() {
 
   useEffect(() => {});
 
-
-
   const titulo: string = post.titulo;
 
   return (
     <Layout>
       <main className="container mx-auto min-h-screen max-w-3xl">
         <div className="xs:block md:hidden my-[24px] mx-[74px]">
-        <div className="flex justify-center">
-          <div className="relative w-fit h-fit">
-   
-              
-            <div className="absolute bottom-[5%] left-[-22%] z-10">
-              <Precio precio={post.precio} />
-            </div>
+          <div className="flex justify-center">
+            <div className="relative w-fit h-fit">
+              <div className="absolute bottom-[5%] left-[-22%] z-10">
+                <Precio precio={post.precio} />
+              </div>
               {post && (
-                <div>
+                <div className="relative w-[280px] h-[280px]">
                   <img
                     src={urlFor(post?.imagen)?.fit("min").url().toString()}
                     alt={post.titulo}
-                    className="h-[280px] z-1"
+                    className="absolute inset-0 object-contain w-full h-full"
                   />
                 </div>
               )}
-          </div>
+            </div>
           </div>
 
           <div>
@@ -111,7 +109,7 @@ export default function PostPage() {
         <div className=" xs:hidden md:flex  my-[16px]">
           <div className="w-1/2">
             <div className="pr-[40px]">
-              <Precio  precio={post.precio} />
+              <Precio precio={post.precio} />
               <h1 className="mt-[20px] text-[34px] m-r-[15px] font-kiffoB mb-[15px]  leading-[normal]">
                 {titulo.toUpperCase()}
               </h1>
@@ -130,9 +128,9 @@ export default function PostPage() {
           </div>
           <div className="w-1/2 flex justify-end">
             {post && (
-              <div >
+              <div className="h-[300px] relative">
                 <img
-                className="h-[300px] z-1"
+                  className=" z-[1] absolute inset-0 object-contain w-full h-full"
                   src={urlFor(post?.imagen)?.fit("max").url().toString()}
                   alt={post.titulo}
                 />
@@ -146,41 +144,63 @@ export default function PostPage() {
         {products && (
           <ul className="grid xs:grid-cols-2 md:grid-cols-4 max-w-3xl m-auto md:pt-[120px] xs:pt-[106px]  md:gap-[50px] xs:gap-[30px]  xs:px-[30px]">
             {products.map((product, index) => {
-              const cssStyle = cssHovers[index % cssHovers.length]
-              
+              const cssStyle = cssHovers[index % cssHovers.length];
+
               return (
-          <li className={`flex justify-center  w-full ${cssStyle} md:mb-[0] xs:mb-[50px]`} key={product._id} >
-           
-           <div className="xs:block md:hidden ">
-           <Link className="pointer"  to={`/${product.slug.current}`}>
-            {product.thumbnail &&   <motion.img
-                  className="h-[150px]"
-                  whileHover={{ scale: 1.1, rotate:'10deg' }}
-                  whileTap={{ scale: 1.1, rotate:'10deg' }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
-             src={urlFor(product.thumbnail).fit('min').url().toString()}/> }
-            </Link>
-           </div>
-           <div className="md:block xs:hidden">
-           <Link className="pointer "   to={`/${product.slug.current}`}>
-            {product.thumbnail &&   <motion.img
-                  className="h-[120px]"
-                  whileHover={{ scale: 1.2, rotate:'10deg' }}
-                  whileTap={{ scale: 1.2, rotate:'10deg' }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
-             src={urlFor(product.thumbnail).fit('min').url().toString()}/> }
-            </Link>
-           </div>
-           
-          </li>
+                <li
+                  className={`flex justify-center  w-full ${cssStyle} md:mb-[0] xs:mb-[50px]`}
+                  key={product._id}
+                >
+                  <div className="xs:block md:hidden ">
+                    <Link className="pointer" to={`/${product.slug.current}`}>
+                      {product.thumbnail && (
+                        <motion.img
+                          className="h-[150px]"
+                          whileHover={{ scale: 1.1, rotate: "10deg" }}
+                          whileTap={{ scale: 1.1, rotate: "10deg" }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 17,
+                          }}
+                          src={urlFor(product.thumbnail)
+                            .fit("min")
+                            .url()
+                            .toString()}
+                        />
+                      )}
+                    </Link>
+                  </div>
+                  <div className="md:block xs:hidden">
+                    <Link className="pointer " to={`/${product.slug.current}`}>
+                      {product.thumbnail && (
+                        <motion.img
+                          className="h-[120px]"
+                          whileHover={{ scale: 1.2, rotate: "10deg" }}
+                          whileTap={{ scale: 1.2, rotate: "10deg" }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 17,
+                          }}
+                          src={urlFor(product.thumbnail)
+                            .fit("min")
+                            .url()
+                            .toString()}
+                        />
+                      )}
+                    </Link>
+                  </div>
+                </li>
               );
             })}
           </ul>
         )}
-        <ModalProduct isOpen={isModalOpen} onClose={handleCloseModal}></ModalProduct>
-
+        <ModalProduct
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+        ></ModalProduct>
       </main>
-
     </Layout>
   );
 }
