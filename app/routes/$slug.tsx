@@ -13,6 +13,7 @@ import { cssHovers } from "~/utils";
 import ModalProduct from "./components/ModalProduct";
 import { register } from "./utils/auth.server";
 import { validateEmail } from "./utils/validator.server";
+import { image } from "motion/react-m";
 
 const POST_QUERY = `*[_type == "product" && slug.current == $slug][0]{_id, descripcion, imagen, precio, titulo}`;
 
@@ -67,7 +68,7 @@ export default function PostPage() {
   useEffect(() => {});
 
   const titulo: string = post.titulo;
-
+  const imageURL = urlFor(post?.imagen)?.fit("min").url().toString();
   return (
     <Layout>
       <main className="container mx-auto min-h-screen max-w-3xl">
@@ -80,7 +81,7 @@ export default function PostPage() {
               {post && (
                 <div className="relative w-[280px] h-[280px]">
                   <img
-                    src={urlFor(post?.imagen)?.fit("min").url().toString()}
+                    src={imageURL}
                     alt={post.titulo}
                     className="absolute inset-0 object-contain w-full h-full"
                   />
@@ -128,10 +129,10 @@ export default function PostPage() {
           </div>
           <div className="w-1/2 flex justify-end">
             {post && (
-              <div className="h-[300px] relative">
+              <div className="h-[300px] w-[300px] relative">
                 <img
                   className=" z-[1] absolute inset-0 object-contain w-full h-full"
-                  src={urlFor(post?.imagen)?.fit("max").url().toString()}
+                  src={imageURL}
                   alt={post.titulo}
                 />
               </div>
@@ -148,14 +149,14 @@ export default function PostPage() {
 
               return (
                 <li
-                  className={`flex justify-center  w-full ${cssStyle} md:mb-[0] xs:mb-[50px]`}
+                  className={`w-full ${cssStyle} md:mb-[0] xs:mb-[50px]`}
                   key={product._id}
                 >
                   <div className="xs:block md:hidden ">
                     <Link className="pointer" to={`/${product.slug.current}`}>
                       {product.thumbnail && (
                         <motion.img
-                          className="h-[150px]"
+                          className="h-[150px] mx-auto"
                           whileHover={{ scale: 1.1, rotate: "10deg" }}
                           whileTap={{ scale: 1.1, rotate: "10deg" }}
                           transition={{
@@ -169,13 +170,18 @@ export default function PostPage() {
                             .toString()}
                         />
                       )}
+                      {product.titulo && (
+                        <h4 className="mt-5 font-kiffoR text-[12px] text-center mx-auto  w-[85%]">
+                          {product.titulo.toUpperCase()}
+                        </h4>
+                      )}
                     </Link>
                   </div>
                   <div className="md:block xs:hidden">
                     <Link className="pointer " to={`/${product.slug.current}`}>
                       {product.thumbnail && (
                         <motion.img
-                          className="h-[120px]"
+                          className="h-[120px] mx-auto"
                           whileHover={{ scale: 1.2, rotate: "10deg" }}
                           whileTap={{ scale: 1.2, rotate: "10deg" }}
                           transition={{
@@ -183,11 +189,13 @@ export default function PostPage() {
                             stiffness: 400,
                             damping: 17,
                           }}
-                          src={urlFor(product.thumbnail)
-                            .fit("min")
-                            .url()
-                            .toString()}
+                          src={urlFor(product.thumbnail).url().toString()}
                         />
+                      )}
+                      {product.titulo && (
+                        <h4 className="mt-5 font-kiffoR text-[12px] text-center mx-auto  w-[85%]">
+                          {product.titulo.toUpperCase()}
+                        </h4>
                       )}
                     </Link>
                   </div>
