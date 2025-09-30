@@ -43,24 +43,24 @@
     }
 
     .bg-hover-green:hover {
-      background: url("./assets/img/hover-green.svg")  no-repeat center center;
+      background: url("./assets/img/hover-green.svg")  no-repeat top center;
       background-size:contain;
 
     }
     .bg-hover-orange:hover {
 
-      background: url("./assets/img/hover-orange.svg")  no-repeat center center;
+      background: url("./assets/img/hover-orange.svg")  no-repeat top center;
       background-size:contain;
 
     }
     .bg-hover-pink:hover {
 
-      background: url("./assets/img/hover-pink.svg")  no-repeat center center;
+      background: url("./assets/img/hover-pink.svg")  no-repeat top center;
       background-size:contain;
 
     }
     .bg-big-carrito:hover {
-      background: url("./assets/img/carrito-total.png")  no-repeat center center;
+      background: url("./assets/img/carrito-total.png")  no-repeat top center;
     }
     .modal-style {
       border: 1px solid #FFF;
