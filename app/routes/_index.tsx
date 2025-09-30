@@ -74,7 +74,7 @@ export default function IndexPage() {
                   <Link className="pointer" to={`/${product.slug.current}`}>
                     {product.thumbnail && (
                       <motion.img
-                        className="h-[150px] mx-auto w-fit  p-2"
+                        className="mx-auto w-fit  p-2"
                         whileHover={{ scale: 1.1, rotate: "10deg" }}
                         whileTap={{ scale: 1.1, rotate: "10deg" }}
                         transition={{
@@ -102,7 +102,7 @@ export default function IndexPage() {
                   >
                     {product.thumbnail && (
                       <motion.img
-                        className="h-[200px] mx-auto w-auto p-2"
+                        className="mx-auto w-auto p-2"
                         whileHover={{ scale: 1.1, rotate: "10deg" }}
                         whileTap={{ scale: 1.1, rotate: "10deg" }}
                         transition={{
