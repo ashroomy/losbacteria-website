@@ -11,11 +11,10 @@ const Footer: React.FC = () => {
                 <a href="mailto:infectados@losbacteria.com" className='hover:text-red underline font-kiffoM' rel="noopener noreferrer">
                 infectados@losbacteria.com
                 </a>
-                <p className='md:hidden xs:block uppercase no-underline text-white font-kiffoR text-[15px] text-center  sm:px-8 sm:pb-[100px] md:pb-[20px]'>bacteria es un colectivo creativo que utiliza el arte, diseño, mercadeo y publicidad para crear y potenciar marcas que generen impacto cultural y comercial. Todos los derechos reservados, 2024.</p>
+                <p className='md:hidden xs:block uppercase no-underline text-white font-kiffoR text-[15px] text-center  sm:px-8 sm:pb-[100px] md:pb-[20px]'>Bacteria es una pulpería creativa que combina arte, diseño y creatividad para ayudar a las marcas a destacar en su categoría. Todos los derechos reservados, 2026</p>
 
             </div>
-            <p className='md:block xs:hidden uppercase no-underline text-white font-kiffoR text-[15px] text-center  sm:px-8 sm:pb-[100px] md:pb-[20px]'>bacteria es un colectivo creativo que utiliza el arte, diseño, mercadeo y publicidad para crear y potenciar marcas que generen impacto cultural y comercial. Todos los derechos reservados, 2024.</p>
-        
+            <p className='md:block xs:hidden uppercase no-underline text-white font-kiffoR text-[15px] text-center  sm:px-8 sm:pb-[100px] md:pb-[20px]'>Bacteria es una pulpería creativa que combina arte, diseño y creatividad para ayudar a las marcas a destacar en su categoría. Todos los derechos reservados, 2026</p>
             </div>
 
 
